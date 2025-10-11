@@ -1,12 +1,12 @@
-const NewRoute = () => {
+const About = () => {
   console.warn("Executing new route...");
   return (
     <div>
       <main>
-        <h1>New Route</h1>
+        <h1>About</h1>
       </main>
     </div>
   );
 };
 
-export default NewRoute;
+export default About;
