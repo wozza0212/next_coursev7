@@ -1,8 +1,12 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import MealsGrid from "../../components/Meals/meals-grid";
+import getMeals from "../../lib/meals";
+import { MealItemType } from "../../components/Meals/meal-types";
 
-const MealsPage = () => {
+const MealsPage = async () => {
+  const meals = (await getMeals()) as MealItemType[];
+
   return (
     <>
       <header className={styles.header}>
@@ -16,7 +20,7 @@ const MealsPage = () => {
         </p>
       </header>
       <main className={styles.main}>
-        <MealsGrid meals={[]} />
+        <MealsGrid meals={meals} />
       </main>
     </>
   );
