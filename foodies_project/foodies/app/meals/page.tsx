@@ -3,10 +3,14 @@ import styles from "./page.module.css";
 import MealsGrid from "../../components/Meals/meals-grid";
 import getMeals from "../../lib/meals";
 import { MealItemType } from "../../components/Meals/meal-types";
+import { Suspense } from "react";
 
-const MealsPage = async () => {
+const Meals = async () => {
   const meals = (await getMeals()) as MealItemType[];
+  return <MealsGrid meals={meals} />;
+};
 
+const MealsPage = () => {
   return (
     <>
       <header className={styles.header}>
@@ -20,7 +24,9 @@ const MealsPage = async () => {
         </p>
       </header>
       <main className={styles.main}>
-        <MealsGrid meals={meals} />
+        <Suspense fallback={<p className={styles.loading}>Fetching Meals</p>}>
+          <Meals />
+        </Suspense>
       </main>
     </>
   );
