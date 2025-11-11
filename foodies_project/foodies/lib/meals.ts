@@ -13,8 +13,11 @@ const db = sql("meals.db");
 
 const getMeals = async () => {
   // Add timeout to mimic real world loading times, and to use async
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  // throw new DatabaseError("database laoding error");
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+  } catch (Error) {
+    throw new DatabaseError("database laoding error");
+  }
   return db.prepare("SELECT * FROM meals").all();
 };
 
