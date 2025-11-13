@@ -1,4 +1,5 @@
 import sql from "better-sqlite3";
+import { MealItemType } from "../components/Meals/meal-types";
 
 class DatabaseError extends Error {
   constructor(message: string) {
@@ -19,6 +20,6 @@ const getMeals = async () => {
     throw new DatabaseError("database laoding error");
   }
   return db.prepare("SELECT * FROM meals").all();
-};
+};;
 
 export default getMeals;
